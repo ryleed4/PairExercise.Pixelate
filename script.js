@@ -2,6 +2,10 @@
 
 const table = document.getElementsByTagName("table")[0];
 
+const addRow = document.getElementById("add-row");
+
+const select = document.getElementsByTagName("select")[0]
+
 function makeRow() {
   const row = document.createElement("tr");
   for (let i = 0; i < 20; i++) {
@@ -13,23 +17,26 @@ function makeRow() {
 makeRow();
 makeRow();
 
-const addRow = document.getElementById("add-row");
-addRow.addEventListener("click", makeRow);
+let chosenColor = 'teal'
 
 function colorize(event) {
   const target = event.target;
-  if (target.className.length) {
-    target.classname = "";
+  if(target.tagName !== 'td') {
+    return
+  }
+  if (target.className === chosenColor) {
+    target.className = "";
   } else {
-    target.className = "teal";
+    target.className = chosenColor;
   }
 }
 
-const select = document.getElementsByTagName("select")
-function changeColor() {
-  console.log("hello");
-} 
+function changeColor(event) {
+  chosenColor = event.target.value;
+  } 
 
 select.addEventListener("change", changeColor);
 
 table.addEventListener("click", colorize);
+
+addRow.addEventListener("click", makeRow);
