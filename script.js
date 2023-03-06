@@ -25,4 +25,11 @@ function colorize(event) {
   }
 }
 
+const select = document.getElementsByTagName("select")
+function changeColor() {
+  console.log("hello");
+} 
+
+select.addEventListener("change", changeColor);
+
 table.addEventListener("click", colorize);
